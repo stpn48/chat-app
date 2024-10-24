@@ -12,13 +12,18 @@
     "@prisma/client": "5.21.1",
     "@supabase/ssr": "^0.5.1",
     "@supabase/supabase-js": "^2.45.6",
+    "@types/uuid": "^10.0.0",
     "framer-motion": "^11.11.9",
     "next": "14.2.16",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "prisma": "^5.21.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "uuid": "^10.0.0",
+    "uuid-v4": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
