@@ -1,7 +1,5 @@
 import React from "react";
 
-type Props = {};
-
-export default function AppPage({}: Props) {
+export default function AppPage() {
   return <div>page</div>;
 }
