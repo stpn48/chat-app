@@ -14,9 +14,9 @@ datasource db {
 }
 
 model Chat {
-  id        String    @id @default(uuid())
-  createdAt DateTime  @default(now())
-  usersId   String[]
+  id        String        @id @default(uuid())
+  createdAt DateTime      @default(now())
+  users     UserProfile[]
   messages  Message[]
 }
 
@@ -27,4 +27,11 @@ model Message {
   userId    String
   text      String
   Chat      Chat     @relation(fields: [chatId], references: [id])
+}
+
+model UserProfile {
+  id            String @id @default(uuid())
+  username      String @unique
+  user_metadata Json
+  Chats         Chat[]
 }
