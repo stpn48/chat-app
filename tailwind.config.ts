@@ -7,7 +7,7 @@ const config: Config = {
       backgroundColor: {
         main: "#ffffff",
         secondary: "",
-        hover: "#fafafa",
+        hover: "#f1f1f1",
         "dark-main": "",
         "dark-secondary": "",
         "dark-hover": "",
