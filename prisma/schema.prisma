@@ -26,6 +26,7 @@ model Message {
   chatId    String
   userId    String
   text      String
+  status    String   @default("delivered")
   Chat      Chat     @relation(fields: [chatId], references: [id])
 }
 
