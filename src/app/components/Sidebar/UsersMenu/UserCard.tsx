@@ -15,7 +15,7 @@ export function UserCard({ otherUser, closeMenu }: Props) {
   const handleClick = useCallback(async () => {
     closeMenu();
     await createChat(otherUser);
-  }, [otherUser.id, closeMenu]);
+  }, [closeMenu, otherUser]);
 
   return (
     <div onClick={handleClick} className="flex cursor-pointer items-center gap-4 rounded-lg p-2 hover:bg-hover">
