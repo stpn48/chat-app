@@ -2,8 +2,6 @@
 
 import { updateMsgStatus } from "@/app/actions/updateMsgStatus";
 import { useOptimisticMessages } from "@/context/useOptimisticMessages";
-import { UserMetadata } from "@supabase/supabase-js";
-import Image from "next/image";
 import React, { useCallback, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { useScrolledToBottom } from "../hooks/useScrolledToBottom";
@@ -37,7 +35,7 @@ export function MessageList({ userId }: Props) {
   return (
     <div
       ref={containerRef}
-      className={twMerge("flex flex-col gap-4 overflow-y-scroll scroll-smooth px-6 pt-10", !isScrolledToBottom && "opacity-0")}
+      className={twMerge("flex flex-col gap-4 overflow-y-scroll scroll-smooth px-6 pt-10", !isScrolledToBottom && "opacity-0")} // If is not scrolled to bottom hide the list
     >
       {messages.map((msg, index) => (
         <Message key={msg.id} isLastMessage={index === messages.length - 1} isAuthor={userId === msg.userId} msg={msg} />
