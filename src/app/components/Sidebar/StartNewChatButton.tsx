@@ -13,8 +13,8 @@ export function StartNewChatButton({ users }: Props) {
   const [showUsersMenu, setShowUsersMenu] = useState(false);
 
   return (
-    <>
-      <button className="" onClick={() => setShowUsersMenu(true)}>
+    <div className="relative">
+      <button onClick={() => setShowUsersMenu(true)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -32,8 +32,8 @@ export function StartNewChatButton({ users }: Props) {
       </button>
 
       <AnimatePresence>
-        {showUsersMenu && <UsersMenu otherUsers={users} closeMenu={() => setShowUsersMenu(false)} />}
+        {showUsersMenu && <UsersMenu className="top-6" otherUsers={users} closeMenu={() => setShowUsersMenu(false)} />}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
