@@ -3,11 +3,11 @@ import { GoogleButton } from "./components/GoogleButton";
 
 export default function SignInPage() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
-      <div className="flex flex-col gap-10">
-        <h1 className="font-bold text-2xl">Continue With Google</h1>
-        <GoogleButton />
-      </div>
+    <div className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+      <h1 className="text-xl font-bold">chat-app login</h1>
+      <GoogleButton />
+
+      <p className="absolute bottom-4 left-4 text-xs text-secondary">2024® random-chat-app All Rights Reserved</p>
     </div>
   );
 }
