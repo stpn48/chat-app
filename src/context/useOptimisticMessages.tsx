@@ -24,7 +24,7 @@ export function OptimisticMessagesProvider({ children, initialMessages, userId }
     (messageText: string) => {
       setMessages((messages) => [
         ...messages,
-        { chatId: uuidv4(), userId: userId, text: messageText, createdAt: new Date(), id: uuidv4() },
+        { chatId: uuidv4(), userId: userId, status: "delivered", text: messageText, createdAt: new Date(), id: uuidv4() },
       ]);
     },
     [setMessages, userId],
@@ -32,7 +32,7 @@ export function OptimisticMessagesProvider({ children, initialMessages, userId }
 
   const value = useMemo(() => {
     return {
-      messages,
+      messages: messages.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime()),
       addMessage,
     };
   }, [messages, addMessage]);
