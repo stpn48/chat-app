@@ -21,7 +21,7 @@ export async function createMessage(chatId: string, message: string) {
     });
 
     revalidatePath(`/app/chat/${chatId}`);
-  } catch () {
+  } catch {
     throw new Error("Error creating message");
   }
 }
