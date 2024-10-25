@@ -13,16 +13,17 @@ type Props = {
 export function UsersMenu({ otherUsers, closeMenu }: Props) {
   return (
     <>
-      <div onClick={closeMenu} className="w-screen z-10 h-screen fixed inset-0" />
+      <div onClick={closeMenu} className="fixed inset-0 z-10 h-screen w-screen" />
       <motion.div
         initial={{ opacity: 0 }}
         transition={{ duration: 0.1 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="flex flex-col z-10 right-4 absolute top-10 gap-2 w-[250px] p-4 border rounded-lg shadow-lg bg-main"
+        className="absolute right-4 top-12 z-10 flex w-[250px] flex-col gap-2 rounded-lg border bg-main p-4 shadow-lg"
       >
+        <p className="text-secondary mb-2 flex w-full justify-center">Select a user to chat with:</p>
         {otherUsers.map((otherUser) => (
-          <UserCard key={otherUser.id} otherUser={otherUser} />
+          <UserCard closeMenu={closeMenu} key={otherUser.id} otherUser={otherUser} />
         ))}
       </motion.div>
     </>
