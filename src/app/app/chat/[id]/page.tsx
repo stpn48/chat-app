@@ -3,6 +3,7 @@ import prisma from "@/utils/prisma";
 import { getUser } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import React from "react";
+import { ChattingWith } from "./components/ChattingWith";
 import { MessageList } from "./components/MessageList";
 import { SendMessageForm } from "./components/SendMessageForm";
 
@@ -35,7 +36,8 @@ export default async function ChatPage({ params }: Props) {
 
   return (
     <OptimisticMessagesProvider initialMessages={chat.messages} userId={user!.id}>
-      <div className="mx-auto flex h-screen w-[70%] flex-col justify-between gap-4 px-4 pb-4">
+      <div className="relative flex h-screen w-full flex-col justify-between gap-4 px-[2%] pb-4">
+        <ChattingWith chat={chat} />
         <MessageList userId={user!.id} />
         <SendMessageForm chatId={chat.id} />
       </div>
