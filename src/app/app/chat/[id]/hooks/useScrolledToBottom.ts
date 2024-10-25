@@ -20,7 +20,7 @@ export function useScrolledToBottom(
       });
       setIsScrolledToBottom(true);
     }
-  }, [messages, setIsScrolledToBottom]);
+  }, [messages, setIsScrolledToBottom, containerRef]);
 
   return { isScrolledToBottom };
 }
