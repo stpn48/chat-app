@@ -9,7 +9,7 @@ type Props = {
 
 export function ChattingWith({ chat }: Props) {
   return (
-    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-4 rounded-full border px-4 py-2 shadow-md">
+    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-4 rounded-full border px-4 py-2 shadow-sm">
       <Image
         className="rounded-full"
         src={(chat.users[1].user_metadata as UserMetadata).avatar_url}
