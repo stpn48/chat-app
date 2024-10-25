@@ -8,6 +8,8 @@ import { revalidatePath } from "next/cache";
 export async function createChat(withUser: UserProfile) {
   const user = await getUser();
 
+  console.log("user", user);
+
   const userProfile = await prisma.userProfile.findUnique({
     where: {
       id: user!.id,
@@ -22,7 +24,7 @@ export async function createChat(withUser: UserProfile) {
   const existingChat = await prisma.chat.findFirst({
     where: {
       users: {
-        some: {
+        every: {
           id: { in: [userProfile.id, withUser.id] },
         },
       },
@@ -33,7 +35,7 @@ export async function createChat(withUser: UserProfile) {
   });
 
   if (existingChat) {
-    console.log("Existing chat found:", existingChat);
+    console.log("Existing chat found z:", existingChat);
     return { chat: existingChat }; // Return the existing chat
   }
 
