@@ -35,10 +35,23 @@ export function MessageList({ userId }: Props) {
   return (
     <div
       ref={containerRef}
-      className={twMerge("flex flex-col gap-4 overflow-y-scroll scroll-smooth px-6 pt-10", !isScrolledToBottom && "opacity-0")} // If is not scrolled to bottom hide the list
+      className={twMerge(
+        "flex flex-col gap-4 overflow-y-scroll scroll-smooth px-6 pt-10",
+        !isScrolledToBottom && "opacity-0",
+      )} // If is not scrolled to bottom hide the list
     >
+      {messages.length === 0 && (
+        <p className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center text-secondary">
+          No messages yet
+        </p>
+      )}
       {messages.map((msg, index) => (
-        <Message key={msg.id} isLastMessage={index === messages.length - 1} isAuthor={userId === msg.userId} msg={msg} />
+        <Message
+          key={msg.id}
+          isLastMessage={index === messages.length - 1}
+          isAuthor={userId === msg.userId}
+          msg={msg}
+        />
       ))}
     </div>
   );
