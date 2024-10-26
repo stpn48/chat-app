@@ -1,23 +1,20 @@
+import { UserCredentials } from "@/components/UserCredentials";
+import { getUser } from "@/utils/supabase/server";
 import { Chat, UserProfile } from "@prisma/client";
-import { UserMetadata } from "@supabase/supabase-js";
-import Image from "next/image";
 import React from "react";
 
 type Props = {
   chat: Chat & { users: UserProfile[] };
 };
 
-export function ChattingWith({ chat }: Props) {
+export async function ChattingWith({ chat }: Props) {
+  const loggedInUser = await getUser();
+
+  const chattingWith = chat.users.filter((user) => user.id !== loggedInUser?.id);
+
   return (
-    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-4 rounded-full border px-4 py-2 shadow-sm">
-      <Image
-        className="rounded-full"
-        src={(chat.users[1].user_metadata as UserMetadata).avatar_url}
-        width={32}
-        height={32}
-        alt="avatar"
-      />
-      <h1>{chat.users[1].username}</h1>
+    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-2 rounded-full border p-2 px-3 shadow-sm dark:border-dark-main">
+      <UserCredentials user={chattingWith[0]} />
     </div>
   );
 }
