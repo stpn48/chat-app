@@ -14,11 +14,11 @@ export async function GET(request: Request) {
     const { error } = await supabase.auth.exchangeCodeForSession(code);
 
     if (!error) {
+      console.log("no error");
+
       const {
         data: { user },
       } = await supabase.auth.getUser();
-
-      console.log(user);
 
       if (user) {
         await prisma.userProfile.upsert({
@@ -39,11 +39,12 @@ export async function GET(request: Request) {
 
       return NextResponse.redirect(`${origin}/app`);
     } else {
+      console.log("error", error);
       // Redirect with error query param on failure
       return NextResponse.redirect(`${origin}/app?error=${encodeURIComponent(error.message)}`);
     }
   }
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/sign-in`);
+  return NextResponse.redirect(`${origin}/login`);
 }

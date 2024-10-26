@@ -51,6 +51,11 @@ export async function registerWithEmailAndPassword(email: string, password: stri
 export async function signInWithProvider(provider: Provider) {
   const supabase = createClient();
 
+  console.log(
+    "In signInWithProvider server action. NEXT_PUBLIC_BASE_URL: ",
+    process.env.NEXT_PUBLIC_BASE_URL,
+  );
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: provider,
     options: {
