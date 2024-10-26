@@ -1,7 +1,6 @@
 import { UserCredentials } from "@/components/UserCredentials";
 import prisma from "@/utils/prisma";
 import { getUser } from "@/utils/supabase/server";
-import Image from "next/image";
 import React from "react";
 import { ChatList } from "./ChatList";
 import { SettingsMenu } from "./SettingsMenu/SettingsMenu";

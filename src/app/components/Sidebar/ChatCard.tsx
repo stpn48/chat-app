@@ -1,8 +1,6 @@
 import { UserCredentials } from "@/components/UserCredentials";
 import { getUser } from "@/utils/supabase/server";
 import { Chat, UserProfile } from "@prisma/client";
-import { UserMetadata } from "@supabase/supabase-js";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 

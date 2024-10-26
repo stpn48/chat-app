@@ -1,4 +1,3 @@
-import { error } from "console";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
