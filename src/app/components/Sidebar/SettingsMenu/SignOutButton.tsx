@@ -5,7 +5,10 @@ import React from "react";
 
 export function SignOutButton() {
   return (
-    <button onClick={async () => await signOut()} className="rounded-lg px-4 py-2 text-red-600 hover:bg-hover">
+    <button
+      onClick={async () => await signOut()}
+      className="rounded-lg px-4 py-2 text-red-600 hover:bg-hover dark:hover:bg-dark-hover"
+    >
       Sign Out
     </button>
   );
