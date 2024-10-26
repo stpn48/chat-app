@@ -35,13 +35,18 @@ export function SendMessageForm({ chatId }: Props) {
     <form className="bottom-10 flex items-center justify-center gap-4" action={handleSendMessage}>
       <input
         ref={messageInputRef}
-        className="flex-grow rounded-full border px-4 py-2 outline-none"
+        className="flex-grow rounded-full border border-main px-4 py-2 outline-none dark:border-dark-main"
         name="message-text"
         type="text"
         placeholder="enter message"
       />
       <button className="flex h-[32px] w-[32px] items-center justify-center rounded-full bg-blue-600 p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 text-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="size-5 text-white"
+        >
           <path
             fillRule="evenodd"
             d="M11.47 2.47a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06l-6.22-6.22V21a.75.75 0 0 1-1.5 0V4.81l-6.22 6.22a.75.75 0 1 1-1.06-1.06l7.5-7.5Z"
