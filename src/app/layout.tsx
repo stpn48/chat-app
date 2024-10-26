@@ -1,5 +1,8 @@
+import { error } from "console";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -25,7 +28,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} text-sm ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} text-sm ${geistMono.variable} antialiased`}>
+        <ThemeProvider defaultTheme="dark" attribute="class" enableSystem={true}>
+          {children}
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              error: {
+                icon: "❌",
+              },
+              success: {
+                icon: "✅",
+              },
+              style: {
+                backgroundColor: "black",
+                color: "white",
+                border: "1px solid #272727",
+              },
+            }}
+          />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

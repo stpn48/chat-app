@@ -1,6 +1,6 @@
 "use client";
 
-import { signInWithProvider } from "@/app/actions/signInWithProvider";
+import { signInWithProvider } from "@/app/actions/supabaseAuth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
@@ -23,8 +23,13 @@ export function GoogleButton() {
   }, [router]);
 
   return (
-    <button onClick={handleClick} className="flex justify-center p-4 border rounded-lg bg-main border-main hover:bg-[#fafafa]">
-      <Image src={"/googleLogo.png"} width={32} height={32} alt="google-logo" />
+    <button
+      onClick={handleClick}
+      type="button"
+      className="flex w-full items-center justify-center rounded-lg border border-main px-4 py-2 dark:border-dark-main"
+    >
+      <Image src={"/googleLogo.png"} alt="googleLogo" height={24} width={24} />
+      <span className="ml-4">Continue with Google</span>
     </button>
   );
 }

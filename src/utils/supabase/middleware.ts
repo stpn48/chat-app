@@ -29,13 +29,13 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user && request.nextUrl.pathname !== "/sign-in") {
+  if (!user && request.nextUrl.pathname !== "/login" && request.nextUrl.pathname !== "/register") {
     console.log("user not logged in and trying to access page different from the /sign-in");
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (user && request.nextUrl.pathname === "/sign-in") {
-    console.log("user logged in and trying to access /sign-in");
+  if (user && (request.nextUrl.pathname === "/login" || request.nextUrl.pathname === "/register")) {
+    console.log("user trying to access /login or /register while logged in");
     return NextResponse.redirect(new URL("/app", request.url));
   }
 

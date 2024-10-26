@@ -24,7 +24,14 @@ export function OptimisticMessagesProvider({ children, initialMessages, userId }
     (messageText: string) => {
       setMessages((messages) => [
         ...messages,
-        { chatId: uuidv4(), userId: userId, status: "delivered", text: messageText, createdAt: new Date(), id: uuidv4() },
+        {
+          chatId: uuidv4(),
+          userId: userId,
+          status: "",
+          text: messageText,
+          createdAt: new Date(),
+          id: uuidv4(),
+        },
       ]);
     },
     [setMessages, userId],

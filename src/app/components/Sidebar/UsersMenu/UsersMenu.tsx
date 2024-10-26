@@ -22,11 +22,13 @@ export function UsersMenu({ otherUsers, closeMenu, className }: Props) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className={twMerge(
-          "absolute right-4 z-10 flex w-[250px] flex-col gap-2 rounded-lg border bg-main p-4 shadow-lg",
+          "absolute right-4 z-10 flex w-[250px] flex-col gap-2 rounded-lg border border-main bg-main p-4 shadow-lg dark:border-dark-main dark:bg-dark-main",
           className,
         )}
       >
-        <p className="mb-2 flex w-full justify-center bg-secondary text-secondary">Select a user to chat with:</p>
+        <p className="mb-2 flex w-full justify-center bg-secondary text-secondary">
+          Select a user to chat with:
+        </p>
         {otherUsers.map((otherUser) => (
           <UserCard closeMenu={closeMenu} key={otherUser.id} otherUser={otherUser} />
         ))}
