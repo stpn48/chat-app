@@ -20,7 +20,6 @@ export default function AppPage() {
         </svg>
 
         <h1 className="text-xl font-bold">Your chats</h1>
-        <button className="rounded-full bg-black px-4 py-2 text-white">Create new chat</button>
       </div>
     </div>
   );
