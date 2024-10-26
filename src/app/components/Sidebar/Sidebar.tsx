@@ -1,5 +1,7 @@
+import { UserCredentials } from "@/components/UserCredentials";
 import prisma from "@/utils/prisma";
 import { getUser } from "@/utils/supabase/server";
+import Image from "next/image";
 import React from "react";
 import { ChatList } from "./ChatList";
 import { SettingsMenu } from "./SettingsMenu/SettingsMenu";
@@ -7,6 +9,12 @@ import { StartNewChatButton } from "./StartNewChatButton";
 
 export async function Sidebar() {
   const user = await getUser();
+
+  const userProfile = await prisma.userProfile.findUnique({
+    where: {
+      id: user!.id,
+    },
+  });
 
   // Find all users except the current user
   const users = await prisma.userProfile.findMany({
@@ -31,22 +39,20 @@ export async function Sidebar() {
     },
   });
 
-  console.log(chats);
-
   return (
     <div className="h-screen p-2">
-      <div className="relative flex h-full w-[325px] flex-col justify-between rounded-lg border border-main bg-main p-4 shadow-md">
+      <div className="relative flex h-full w-[325px] flex-col justify-between rounded-lg border bg-white p-4 shadow-spread dark:border-dark-main dark:bg-dark-main">
         <div>
-          <div className="mb-5 flex items-center gap-3">
-            <h1 className="text-lg font-bold">{user?.user_metadata.full_name}</h1>
-          </div>
           <div className="flex justify-between py-2">
             <h1 className="text-base font-medium">Your chats</h1>
             <StartNewChatButton users={users} />
           </div>
           <ChatList chats={chats} />
         </div>
-        <SettingsMenu />
+        <div className="flex w-full items-center justify-between">
+          <SettingsMenu />
+          <UserCredentials user={userProfile!} hideName />
+        </div>
       </div>
     </div>
   );
