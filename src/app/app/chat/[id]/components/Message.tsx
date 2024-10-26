@@ -21,15 +21,17 @@ export function Message({ msg, isAuthor, isLastMessage }: Props) {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           className={twMerge(
-            "cursor-default rounded-full px-3 py-2 text-white",
+            "cursor-default rounded-full px-3 py-2 text-[15px] text-white",
             isAuthor && "bg-blue-600",
-            !isAuthor && "bg-stone-100 text-black",
+            !isAuthor && "bg-stone-100 text-black dark:bg-dark-secondary dark:text-white",
           )}
         >
           {msg.text}
         </p>
 
-        {isLastMessage && isAuthor && <p className="text-secondary pr-1 text-xs">{msg.status}</p>}
+        {isLastMessage && isAuthor && (
+          <p className="pr-[6px] text-xs text-secondary">{msg.status}</p>
+        )}
       </div>
 
       <AnimatePresence>
