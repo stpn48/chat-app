@@ -8,9 +8,15 @@ type Props = {
 
 export default function AppLayout({ children }: Props) {
   return (
-    <div className="flex">
-      <Sidebar />
-      <PageContainer>{children}</PageContainer>
-    </div>
+    <>
+      <div className="hidden sm:block">
+        <div className="flex">
+          <Sidebar />
+          <PageContainer>{children}</PageContainer>
+        </div>
+      </div>
+
+      <div className="block sm:hidden">{children}</div>
+    </>
   );
 }
