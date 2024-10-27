@@ -32,7 +32,7 @@ const config: Config = {
         main: "#e9e9e9",
         hover: "",
         "dark-main": "#272727",
-        "dark-hover": "",
+        "dark-hover": "#383838",
       },
       colors: {
         background: "var(--background)",

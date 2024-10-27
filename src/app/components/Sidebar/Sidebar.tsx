@@ -3,7 +3,9 @@ import prisma from "@/utils/prisma";
 import { getUser } from "@/utils/supabase/server";
 import React from "react";
 import { ChatList } from "./ChatList";
+import { HideSidebarHoverContainer } from "./HideSidebarHoverContainer";
 import { SettingsMenu } from "./SettingsMenu/SettingsMenu";
+import { SidebarContainer } from "./SidebarContainer";
 import { StartNewChatButton } from "./StartNewChatButton";
 
 export async function Sidebar() {
@@ -35,12 +37,13 @@ export async function Sidebar() {
     },
     include: {
       users: true,
+      messages: true,
     },
   });
 
   return (
-    <div className="h-screen p-2">
-      <div className="relative flex h-full w-[325px] flex-col justify-between rounded-lg border bg-white p-4 shadow-spread dark:border-dark-main dark:bg-dark-main">
+    <div className="flex h-screen">
+      <SidebarContainer>
         <div>
           <div className="flex justify-between py-2">
             <h1 className="text-base font-medium">Your chats</h1>
@@ -52,7 +55,8 @@ export async function Sidebar() {
           <SettingsMenu />
           <UserCredentials user={userProfile!} hideName />
         </div>
-      </div>
+      </SidebarContainer>
+      <HideSidebarHoverContainer />
     </div>
   );
 }

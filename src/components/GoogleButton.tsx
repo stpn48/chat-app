@@ -26,7 +26,7 @@ export function GoogleButton() {
     <button
       onClick={handleClick}
       type="button"
-      className="flex w-full items-center justify-center rounded-lg border border-main px-4 py-2 dark:border-dark-main"
+      className="flex w-full items-center justify-center rounded-lg border border-main px-4 py-3 hover:border-hover dark:border-dark-main dark:hover:border-dark-hover"
     >
       <Image src={"/googleLogo.png"} alt="googleLogo" height={24} width={24} />
       <span className="ml-4">Continue with Google</span>

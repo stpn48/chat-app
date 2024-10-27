@@ -28,7 +28,11 @@ export function UserCredentials({ user, hideName }: Props) {
         </div>
       )}
 
-      {!hideName && <h1>{user.username || chattingWithUserMetadata.email}</h1>}
+      {!hideName && (
+        <h1 className="max-w-[100px] truncate">
+          {user.username || chattingWithUserMetadata.email}
+        </h1>
+      )}
     </div>
   );
 }
