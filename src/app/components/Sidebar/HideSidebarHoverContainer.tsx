@@ -1,13 +1,11 @@
 "use client";
 
 import { useSidebar } from "@/store/useSidebar";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useCallback, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-type Props = {};
-
-export function HideSidebarHoverContainer({}: Props) {
+export function HideSidebarHoverContainer() {
   const { setShowSidebar, showSidebar } = useSidebar();
 
   const [isHovering, setIsHovering] = useState(false);
@@ -18,27 +16,26 @@ export function HideSidebarHoverContainer({}: Props) {
   }, [setShowSidebar, setIsHovering]);
 
   return (
-    <div
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      className={twMerge(
-        "absolute z-50 flex h-[97%] w-[70px] items-center justify-center",
-        showSidebar ? "left-[325px]" : "-left-0",
-      )}
-    >
-      <AnimatePresence>
+    <div className="hidden sm:block">
+      <div
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        className={twMerge(
+          "absolute z-50 flex h-[97%] w-[70px] items-center justify-center",
+          showSidebar ? "left-[325px]" : "-left-0",
+        )}
+      >
         {isHovering && (
           <motion.button
             onClick={handleArrowButtonClick}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
             className="z-10 flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 dark:bg-dark-main"
           >
             {showSidebar ? <ArrLeft /> : <ArrRight />}
           </motion.button>
         )}
-      </AnimatePresence>
+      </div>
     </div>
   );
 }
