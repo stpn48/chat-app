@@ -14,7 +14,7 @@ export function useNewMsgCount(messages: Message[]) {
     };
 
     getCount();
-  }, []);
+  }, [messages]);
 
   return { newMessagesCount, setNewMessagesCount };
 }
