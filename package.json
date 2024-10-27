@@ -25,7 +25,8 @@
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.5.4",
     "uuid": "^10.0.0",
-    "uuid-v4": "^0.1.0"
+    "uuid-v4": "^0.1.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
