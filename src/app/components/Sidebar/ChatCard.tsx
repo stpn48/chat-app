@@ -17,7 +17,7 @@ export function ChatCard({ chat, chattingWith }: Props) {
 
   const resetNewMessagesCount = useCallback(() => {
     setNewMessagesCount(0);
-  }, []);
+  }, [setNewMessagesCount]);
 
   return (
     <Link onClick={resetNewMessagesCount} href={`/app/chat/${chat.id}`}>
