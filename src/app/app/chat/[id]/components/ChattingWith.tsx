@@ -13,7 +13,7 @@ export async function ChattingWith({ chat }: Props) {
   const chattingWith = chat.users.filter((user) => user.id !== loggedInUser?.id);
 
   return (
-    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-2 rounded-full border p-2 px-3 shadow-sm dark:border-dark-main">
+    <div className="absolute left-[50%] z-50 mt-4 flex w-fit -translate-x-[50%] items-center gap-2 rounded-full border bg-main p-2 px-3 shadow-sm dark:border-dark-main dark:bg-dark-main">
       <UserCredentials user={chattingWith[0]} />
     </div>
   );
