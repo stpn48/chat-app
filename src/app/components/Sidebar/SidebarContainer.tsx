@@ -14,8 +14,8 @@ export function SidebarContainer({ children }: Props) {
   return (
     <div
       className={twMerge(
-        "absolute m-2 flex h-[98%] w-[325px] flex-col justify-between rounded-lg border bg-white p-4 shadow-spread transition-all duration-300 dark:border-dark-main dark:bg-dark-main",
-        !showSidebar ? "-left-[325px] opacity-0" : "left-0",
+        "m-2 flex h-[98%] w-[325px] flex-col justify-between rounded-lg border bg-white p-4 shadow-spread transition-all duration-300 dark:border-dark-main dark:bg-dark-main sm:absolute",
+        !showSidebar ? "sm:-left-[325px] sm:opacity-0" : "sm:left-0",
       )}
     >
       {children}
