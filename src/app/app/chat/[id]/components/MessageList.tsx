@@ -1,7 +1,9 @@
 "use client";
 
+import { handleMessageTableChange } from "@/app/actions/handleMessageTableChange";
 import { updateMsgStatus } from "@/app/actions/updateMsgStatus";
 import { useOptimisticMessages } from "@/context/useOptimisticMessages";
+import { createClient } from "@/utils/supabase/client";
 import React, { useCallback, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { useScrolledToBottom } from "../hooks/useScrolledToBottom";
@@ -9,28 +11,49 @@ import { Message } from "./Message";
 
 type Props = {
   userId: string;
+  chatId: string;
 };
 
-export function MessageList({ userId }: Props) {
+export function MessageList({ userId, chatId }: Props) {
   const { messages } = useOptimisticMessages();
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { isScrolledToBottom } = useScrolledToBottom(messages, containerRef);
 
-  const handleUpdateMsgStatus = useCallback(async (msgId: string) => {
-    await updateMsgStatus(msgId, "seen");
-  }, []);
+  const handleChangeMessageStatus = useCallback(() => {
+    messages.forEach(async (msg) => {
+      if (msg.status === "delivered" && msg.userId !== userId) {
+        await updateMsgStatus(msg.id, "seen");
+      }
+    });
+  }, [messages, userId]);
 
   useEffect(() => {
-    if (isScrolledToBottom) {
-      messages.forEach((msg) => {
-        if (msg.status === "delivered" && msg.userId !== userId) {
-          handleUpdateMsgStatus(msg.id);
-        }
-      });
-    }
-  }, [isScrolledToBottom, messages, handleUpdateMsgStatus, userId]);
+    handleChangeMessageStatus();
+  }, [messages, chatId]);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const channel = supabase
+      .channel("realtime-messages")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "Message" }, () => {
+        handleMessageTableChange(chatId);
+      })
+      .on("postgres_changes", { event: "UPDATE", schema: "public", table: "Message" }, () => {
+        handleMessageTableChange(chatId);
+      })
+      .subscribe();
+
+    // cleanup
+    return () => {
+      async function unsubscribeChannel() {
+        await channel.unsubscribe();
+      }
+      unsubscribeChannel();
+    };
+  }, []);
 
   return (
     <div

@@ -38,7 +38,7 @@ export default async function ChatPage({ params }: Props) {
     <OptimisticMessagesProvider initialMessages={chat.messages} userId={user!.id}>
       <div className="relative flex h-screen w-full flex-col justify-between gap-4 px-[2%] pb-4">
         <ChattingWith chat={chat} />
-        <MessageList userId={user!.id} />
+        <MessageList userId={user!.id} chatId={chat.id} />
         <SendMessageForm chatId={chat.id} />
       </div>
     </OptimisticMessagesProvider>

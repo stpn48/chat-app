@@ -32,11 +32,11 @@ export async function registerWithEmailAndPassword(email: string, password: stri
       create: {
         id: user.id,
         username: user.user_metadata.full_name || "",
-        user_metadata: user.user_metadata,
+        user_metadata: user.user_metadata || "",
       },
       update: {
         username: user.user_metadata.full_name || "", // Update with username if provided
-        user_metadata: user.user_metadata,
+        user_metadata: user.user_metadata || "",
       },
     });
   }
